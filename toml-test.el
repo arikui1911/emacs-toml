@@ -77,6 +77,12 @@ aiueo"
    (should (equal "GitHub Cofounder & CEO\\nLikes tater tots and beer." (toml:read-string)))
    (should (toml:end-of-line-p))))
 
+(ert-deftest toml-test:read-string-empty ()
+  (toml-test:buffer-setup
+   "\"\""
+   (should (equal "" (toml:read-string)))
+   (should (toml:end-of-line-p))))
+
 (ert-deftest toml-test-error:read-string ()
   (dolist (str '("aiueo"       ;; Not start with '"'
                  "\"hogehoge"  ;; Not end with '"'
